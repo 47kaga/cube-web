@@ -1,0 +1,28 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "sqlite"
+  url      = env("DATABASE_URL")
+}
+
+model User {
+  id           String     @id @default(cuid())
+  username     String     @unique
+  passwordHash String
+  createdAt    DateTime   @default(now())
+  progress     Progress[]
+}
+
+model Progress {
+  id            String    @id @default(cuid())
+  userId        String
+  user          User      @relation(fields: [userId], references: [id], onDelete: Cascade)
+  actNumber     Int
+  episodeNumber Int
+  completed     Boolean   @default(false)
+  completedAt   DateTime?
+
+  @@unique([userId, actNumber, episodeNumber])
+}

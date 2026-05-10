@@ -1,0 +1,99 @@
+@import "tailwindcss";
+
+:root {
+  --cube-bg: #050505;
+  --cube-fg: #dcdcdc;
+  --cube-muted: #6a6a6a;
+  --cube-green: #7ddf9a;
+  --cube-purple: #c9a0ff;
+  --cube-red: #f87171;
+}
+
+@theme inline {
+  --font-sans: var(--font-cube-mono);
+  --font-mono: var(--font-cube-mono);
+}
+
+html {
+  color-scheme: dark;
+}
+
+body {
+  background: var(--cube-bg);
+  color: var(--cube-fg);
+  font-family: var(--font-cube-mono), ui-monospace, monospace;
+}
+
+.crt-root {
+  position: relative;
+  min-height: 100%;
+}
+
+.crt-root::after {
+  content: "";
+  pointer-events: none;
+  position: fixed;
+  inset: 0;
+  z-index: 50;
+  opacity: 0.04;
+  mix-blend-mode: overlay;
+  animation: crt-flicker 6s steps(2, end) infinite;
+  background: repeating-radial-gradient(
+    circle at 20% 20%,
+    rgba(255, 255, 255, 0.06) 0,
+    rgba(255, 255, 255, 0.06) 1px,
+    transparent 1px,
+    transparent 4px
+  );
+}
+
+.crt-scanlines {
+  background: repeating-linear-gradient(
+    to bottom,
+    rgba(0, 0, 0, 0),
+    rgba(0, 0, 0, 0) 2px,
+    rgba(0, 0, 0, 0.18) 2px,
+    rgba(0, 0, 0, 0.18) 4px
+  );
+}
+
+.crt-noise {
+  animation: crt-flicker 0.35s steps(2, end) infinite;
+  background-image: radial-gradient(
+    circle at 10% 20%,
+    rgba(255, 255, 255, 0.06),
+    transparent 40%
+  );
+}
+
+@keyframes crt-flicker {
+  0%,
+  94%,
+  100% {
+    opacity: 1;
+  }
+  96% {
+    opacity: 0.88;
+  }
+  98% {
+    opacity: 0.95;
+  }
+}
+
+@keyframes cube-shake {
+  0% {
+    transform: translateX(0);
+  }
+  25% {
+    transform: translateX(-3px);
+  }
+  50% {
+    transform: translateX(3px);
+  }
+  75% {
+    transform: translateX(-2px);
+  }
+  100% {
+    transform: translateX(0);
+  }
+}
