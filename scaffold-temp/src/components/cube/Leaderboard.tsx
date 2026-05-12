@@ -8,19 +8,22 @@ type Props = {
 export function Leaderboard({ rows, currentUserId }: Props) {
   return (
     <section
-      className="border border-[#333] bg-[#080808] p-4 font-mono text-xs"
+      className="border border-[#2a2a2a] bg-[#060606] p-4 font-mono text-xs shadow-[inset_0_1px_0_rgba(255,255,255,0.02)]"
       aria-label="Leaderboard"
     >
-      <p className="text-[#6a6a6a] uppercase tracking-widest mb-3">
-        Transmission ranking
+      <p className="mb-0.5 font-mono text-[9px] uppercase tracking-[0.35em] text-[#4a4a4a]">
+        OPERATOR PROGRESSION
+      </p>
+      <p className="mb-3 text-[#6a6a6a] uppercase tracking-widest">
+        TRANSMISSION RANKING
       </p>
       <div className="overflow-x-auto">
         <table className="w-full border-collapse text-left">
           <thead>
-            <tr className="text-[#5a5a5a] border-b border-[#222]">
-              <th className="py-1 pr-2 font-normal">#</th>
-              <th className="py-1 pr-2 font-normal">OPERATOR</th>
-              <th className="py-1 font-normal">PROGRESS</th>
+            <tr className="border-b border-[#1a1a1a] text-[#4a4a4a]">
+              <th className="py-1.5 pr-2 font-normal">#</th>
+              <th className="py-1.5 pr-2 font-normal">OPERATOR</th>
+              <th className="py-1.5 font-normal">PROGRESS</th>
             </tr>
           </thead>
           <tbody>
@@ -29,16 +32,16 @@ export function Leaderboard({ rows, currentUserId }: Props) {
                 key={r.userId}
                 className={
                   r.userId === currentUserId
-                    ? "text-[#dcd0ff] bg-[#120a18]"
-                    : "text-[#bdbdbd]"
+                    ? "bg-[#100818] text-[#dcd0ff]"
+                    : "text-[#b0b0b0]"
                 }
               >
-                <td className="py-1 pr-2 align-top text-[#6a6a6a]">{r.rank}</td>
-                <td className="py-1 pr-2 align-top">{r.username}</td>
-                <td className="py-1 align-top">
-                  {r.episode1Complete
-                    ? "ACT 1 / EP 1 ✓"
-                    : "ACT 1 / EP 1 …"}
+                <td className="py-1.5 pr-2 align-top text-[#5a5a5a]">
+                  {r.rank}
+                </td>
+                <td className="py-1.5 pr-2 align-top">{r.username}</td>
+                <td className="py-1.5 align-top">
+                  {r.episode1Complete ? "ACT 1 / EP 1 ✓" : "ACT 1 / EP 1 …"}
                 </td>
               </tr>
             ))}

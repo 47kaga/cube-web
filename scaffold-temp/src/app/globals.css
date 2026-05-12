@@ -97,3 +97,47 @@ body {
     transform: translateX(0);
   }
 }
+
+@keyframes persevere-jitter {
+  0%,
+  100% {
+    transform: translate(0, 0);
+  }
+  25% {
+    transform: translate(-0.45px, 0.35px);
+  }
+  50% {
+    transform: translate(0.5px, -0.25px);
+  }
+  75% {
+    transform: translate(-0.35px, -0.4px);
+  }
+}
+
+.animate-persevere-jitter {
+  animation: persevere-jitter 0.14s steps(2, end) infinite;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .animate-persevere-jitter {
+    animation: none;
+  }
+}
+
+@keyframes persevere-sweep {
+  0% {
+    transform: translateX(-130%);
+    opacity: 0.35;
+  }
+  45% {
+    opacity: 0.85;
+  }
+  100% {
+    transform: translateX(260%);
+    opacity: 0;
+  }
+}
+
+.home-persevere-sweep {
+  animation: persevere-sweep 0.9s ease-out forwards;
+}
